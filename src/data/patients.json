@@ -66,7 +66,16 @@
     "confidence_score": 88,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Respiratory",
+    "priority_tags": [],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Paediatric HDU bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1001887",
@@ -140,7 +149,19 @@
     "confidence_score": 92,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Cardiac",
+    "priority_tags": [
+      "time_critical",
+      "high_value"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1003421",
@@ -214,7 +235,21 @@
     "confidence_score": 90,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Surgical",
+    "priority_tags": [
+      "surgical",
+      "time_critical",
+      "deteriorating",
+      "high_value"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Orthopaedic Ward bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1005832",
@@ -292,7 +327,19 @@
     "confidence_score": 94,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Obstetrics",
+    "priority_tags": [
+      "time_critical",
+      "high_value"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1002765",
@@ -366,7 +413,20 @@
     "confidence_score": 91,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Cardiac",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating",
+      "high_value"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1006234",
@@ -435,7 +495,19 @@
     "confidence_score": 89,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Metabolic",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange ICU / HDU bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1007891",
@@ -500,7 +572,18 @@
     "confidence_score": 85,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Renal/Urology",
+    "priority_tags": [
+      "conversion_opportunity"
+    ],
+    "admission_conversion_probability": 64,
+    "next_action": {
+      "action": "Follow up for elective admission \u2014 surgical conversion opportunity",
+      "urgency": "low",
+      "icon": "\ud83d\udcbc"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1008345",
@@ -570,7 +653,20 @@
     "confidence_score": 90,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Gastro/Hepatology",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating",
+      "dropout_risk"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1009012",
@@ -640,7 +736,19 @@
     "confidence_score": 87,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Respiratory",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Respiratory HDU bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1010567",
@@ -715,7 +823,20 @@
     "confidence_score": 93,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Cardiac",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating",
+      "high_value"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1011234",
@@ -781,7 +902,18 @@
     "confidence_score": 91,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Surgical",
+    "priority_tags": [
+      "surgical"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Surgical Ward bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1012890",
@@ -851,7 +983,16 @@
     "confidence_score": 86,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Cardiac",
+    "priority_tags": [],
+    "admission_conversion_probability": 95,
+    "next_action": {
+      "action": "Schedule admission within 24\u201348 hours \u2014 Rheumatology / Nephrology Ward",
+      "urgency": "medium",
+      "icon": "\ud83d\udccb"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1013456",
@@ -920,7 +1061,18 @@
     "confidence_score": 88,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Oncology",
+    "priority_tags": [
+      "time_critical"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Admit to ICU/CCU immediately",
+      "urgency": "critical",
+      "icon": "\ud83d\udea8"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1014567",
@@ -990,7 +1142,18 @@
     "confidence_score": 82,
     "data_completeness": "Medium",
     "icd10_verified": false,
-    "icd10_verification_note": "Requires medical coder review before billing"
+    "icd10_verification_note": "Requires medical coder review before billing",
+    "disease_cohort": "General Medicine",
+    "priority_tags": [
+      "dropout_risk"
+    ],
+    "admission_conversion_probability": 77,
+    "next_action": {
+      "action": "Schedule admission within 24\u201348 hours \u2014 Psychiatric Ward",
+      "urgency": "medium",
+      "icon": "\ud83d\udccb"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1015678",
@@ -1059,7 +1222,19 @@
     "confidence_score": 87,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "General Medicine",
+    "priority_tags": [
+      "time_critical",
+      "deteriorating"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Ophthalmology / Neurology Ward bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1016789",
@@ -1132,7 +1307,18 @@
     "confidence_score": 84,
     "data_completeness": "Medium",
     "icd10_verified": false,
-    "icd10_verification_note": "Requires medical coder review before billing"
+    "icd10_verification_note": "Requires medical coder review before billing",
+    "disease_cohort": "General Medicine",
+    "priority_tags": [
+      "high_value"
+    ],
+    "admission_conversion_probability": 87,
+    "next_action": {
+      "action": "Schedule admission within 24\u201348 hours \u2014 Dermatology Ward / Burns-type Care",
+      "urgency": "medium",
+      "icon": "\ud83d\udccb"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1017890",
@@ -1205,7 +1391,19 @@
     "confidence_score": 89,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Surgical",
+    "priority_tags": [
+      "surgical",
+      "time_critical"
+    ],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange ENT Ward / ICU Backup bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1018901",
@@ -1275,7 +1473,16 @@
     "confidence_score": 86,
     "data_completeness": "High",
     "icd10_verified": true,
-    "icd10_verification_note": null
+    "icd10_verification_note": null,
+    "disease_cohort": "Haematology",
+    "priority_tags": [],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Arrange Haematology Ward bed \u2014 Emergency admission",
+      "urgency": "high",
+      "icon": "\u26a1"
+    },
+    "risk_trend": "worsening"
   },
   {
     "patient_id": "BLKH.1019012",
@@ -1342,7 +1549,16 @@
     "confidence_score": 85,
     "data_completeness": "Medium",
     "icd10_verified": false,
-    "icd10_verification_note": "Requires medical coder review before billing"
+    "icd10_verification_note": "Requires medical coder review before billing",
+    "disease_cohort": "Infectious Disease",
+    "priority_tags": [],
+    "admission_conversion_probability": 98,
+    "next_action": {
+      "action": "Schedule follow-up appointment and monitor progress",
+      "urgency": "low",
+      "icon": "\ud83d\udcc5"
+    },
+    "risk_trend": "stable"
   },
   {
     "patient_id": "BLKH.1020123",
@@ -1410,6 +1626,17 @@
     "confidence_score": 80,
     "data_completeness": "Medium",
     "icd10_verified": false,
-    "icd10_verification_note": "Requires medical coder review before billing"
+    "icd10_verification_note": "Requires medical coder review before billing",
+    "disease_cohort": "General Medicine",
+    "priority_tags": [
+      "conversion_opportunity"
+    ],
+    "admission_conversion_probability": 72,
+    "next_action": {
+      "action": "Follow up for elective admission \u2014 surgical conversion opportunity",
+      "urgency": "low",
+      "icon": "\ud83d\udcbc"
+    },
+    "risk_trend": "stable"
   }
 ]

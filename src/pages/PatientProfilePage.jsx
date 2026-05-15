@@ -9,6 +9,7 @@ import RiskCard from '../components/profile/RiskCard'
 import OperationalCard from '../components/profile/OperationalCard'
 import AIRationaleCard from '../components/profile/AIRationaleCard'
 import PhysicianReviewCard from '../components/profile/PhysicianReviewCard'
+import NextActionCard from '../components/profile/NextActionCard'
 
 export default function PatientProfilePage() {
   const { id } = useParams()
@@ -44,6 +45,7 @@ export default function PatientProfilePage() {
 
         {/* Right column — 1/3 width */}
         <div className="space-y-5">
+          <NextActionCard patient={patient} />
           <RiskCard patient={patient} />
           <OperationalCard patient={patient} />
           <PhysicianReviewCard patient={patient} />

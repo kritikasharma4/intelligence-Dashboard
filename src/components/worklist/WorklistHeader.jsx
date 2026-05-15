@@ -18,6 +18,8 @@ export default function WorklistHeader({
   departments,
   filteredCount,
   totalCount,
+  viewMode,
+  setViewMode,
 }) {
   return (
     <div className="bg-white border-b border-gray-100 sticky top-0 z-10 shadow-sm">
@@ -33,12 +35,25 @@ export default function WorklistHeader({
           </div>
         </div>
         <div className="flex items-center gap-4">
+          {/* View toggle */}
+          <div className="flex items-center bg-gray-100 rounded-lg p-0.5 gap-0.5">
+            <button
+              onClick={() => setViewMode('table')}
+              className={`text-xs px-3 py-1.5 rounded-md font-semibold transition-all ${viewMode === 'table' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              ☰ List
+            </button>
+            <button
+              onClick={() => setViewMode('cohort')}
+              className={`text-xs px-3 py-1.5 rounded-md font-semibold transition-all ${viewMode === 'cohort' ? 'bg-white shadow-sm text-gray-800' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              ⬡ Cohorts
+            </button>
+          </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span className="text-xs text-gray-400 font-medium">Live</span>
           </div>
-          <span className="text-xs text-gray-300">|</span>
-          <span className="text-xs text-gray-400">Docstribe AI · v1.0</span>
         </div>
       </div>
 

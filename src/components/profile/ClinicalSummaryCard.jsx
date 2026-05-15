@@ -9,7 +9,22 @@ export default function ClinicalSummaryCard({ patient }) {
         <div>
           <p className="text-xs font-semibold text-gray-400 uppercase mb-1">Primary Diagnosis</p>
           <p className="text-gray-900 font-semibold">{patient.primary_diagnosis}</p>
-          <p className="text-xs text-blue-600 font-mono mt-0.5">{patient.icd10_code}</p>
+          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+            <p className="text-xs text-blue-600 font-mono">{patient.icd10_code}</p>
+            {patient.icd10_verified === true && (
+              <span className="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                ✓ ICD-10 Verified
+              </span>
+            )}
+            {patient.icd10_verified === false && (
+              <span
+                className="inline-flex items-center gap-1 text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium cursor-help"
+                title={patient.icd10_verification_note}
+              >
+                ⚠ Unverified · Requires Coder Review
+              </span>
+            )}
+          </div>
         </div>
 
         <div>

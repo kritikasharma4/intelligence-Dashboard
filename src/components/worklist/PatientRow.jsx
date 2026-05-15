@@ -30,7 +30,12 @@ export default function PatientRow({ patient }) {
       {/* Diagnosis */}
       <td className="px-4 py-3">
         <p className="text-sm text-gray-800 font-medium">{truncate(patient.primary_diagnosis, 50)}</p>
-        <p className="text-xs text-gray-400 font-mono">{patient.icd10_code}</p>
+        <div className="flex items-center gap-1.5 mt-0.5">
+          <p className="text-xs text-gray-400 font-mono">{patient.icd10_code}</p>
+          {patient.icd10_verified === false && (
+            <span className="text-xs bg-yellow-100 text-yellow-600 px-1.5 py-0.5 rounded font-medium">unverified</span>
+          )}
+        </div>
       </td>
 
       {/* Risk */}

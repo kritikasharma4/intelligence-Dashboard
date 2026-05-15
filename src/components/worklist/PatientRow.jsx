@@ -16,6 +16,9 @@ export default function PatientRow({ patient }) {
       <td className="px-4 py-3">
         <p className="font-semibold text-gray-900 text-sm">{patient.patient_name}</p>
         <p className="text-xs text-gray-400">{patient.patient_id}</p>
+        {patient.confidence_score < 70 && (
+          <span className="text-xs text-yellow-600 font-medium">⚠ Low confidence</span>
+        )}
       </td>
 
       {/* Department + Doctor */}

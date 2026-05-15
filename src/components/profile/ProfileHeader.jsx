@@ -5,6 +5,9 @@ import { formatDate, formatCurrency, formatLOS } from '../../utils/formatters'
 export default function ProfileHeader({ patient }) {
   const navigate = useNavigate()
 
+  const confidenceLow = patient.confidence_score < 70
+  const confidenceCritical = patient.confidence_score < 50
+
   return (
     <div className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -52,6 +55,19 @@ export default function ProfileHeader({ patient }) {
           </div>
         </div>
       </div>
+
+      {confidenceCritical && (
+        <div className="mt-3 flex items-center gap-2 bg-red-50 border border-red-200 rounded-lg px-4 py-2 text-red-800 text-sm">
+          <span>⛔</span>
+          <span><strong>Low AI Confidence ({patient.confidence_score}%)</strong> — Clinical data is sparse. Do not act on AI fields without physician sign-off.</span>
+        </div>
+      )}
+      {!confidenceCritical && confidenceLow && (
+        <div className="mt-3 flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-2 text-yellow-800 text-sm">
+          <span>⚠️</span>
+          <span><strong>AI Confidence {patient.confidence_score}%</strong> — Key fields (diagnosis, ICD-10, treatment) require physician verification before acting.</span>
+        </div>
+      )}
     </div>
   )
 }

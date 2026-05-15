@@ -151,6 +151,188 @@ ANTHROPIC_API_KEY=your_key python3 process_patients.py
 
 ---
 
+## Production Roadmap
+
+The current system is a proof-of-concept. Below is what would be required to make it clinically safe and production-ready.
+
+---
+
+### 1. RAG — Grounding AI in Verified Clinical Guidelines
+
+**Problem today:** Claude infers diagnoses and red flags from training data alone. There is no auditable source — it cannot say "SpO2 < 92% is a red flag per WHO Pulse Oximetry Guidelines 2011."
+
+**Solution:** Retrieval Augmented Generation (RAG)
+
+```
+Clinical Guidelines (NICE, WHO, UpToDate PDFs)
+        ↓
+Chunked + embedded into a vector database (e.g. Pinecone, pgvector)
+        ↓
+At inference time: retrieve the top-3 relevant guideline chunks for the patient's department/symptoms
+        ↓
+Inject retrieved chunks into Claude's prompt as context
+        ↓
+Claude now cites a specific guideline when classifying red flags or suggesting treatment
+```
+
+**What changes in the prompt:**
+```
+Context from NICE Guidelines (CG101 - Chronic heart failure):
+"Refer urgently if new-onset chest pain with ST changes..."
+
+Given this context and the patient record below, classify red flags...
+```
+
+**Result:** Every red flag and treatment recommendation is traceable to a specific guideline version. Auditable. Defensible in a clinical setting.
+
+---
+
+### 2. ICD-10 Validation Layer
+
+**Problem today:** Claude returns an ICD-10 code like `I20.0` — but there is no programmatic check that this code is valid, current, or correctly mapped to the diagnosis.
+
+**Solution:** Post-processing validation step in the pipeline
+
+```python
+import requests
+
+def validate_icd10(code: str, diagnosis: str) -> dict:
+    # Query the official NLM ICD-10-CM API
+    url = f"https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms={code}"
+    response = requests.get(url).json()
+    
+    valid_codes = response[3]  # list of [code, description] pairs
+    matched = next((c for c in valid_codes if c[0] == code), None)
+    
+    return {
+        "valid": matched is not None,
+        "official_description": matched[1] if matched else None,
+        "mismatch": matched and diagnosis.lower() not in matched[1].lower()
+    }
+```
+
+If `valid: false` or `mismatch: true` — flag the field in the UI as "ICD-10 unverified" and block it from downstream billing systems until a coder reviews it.
+
+---
+
+### 3. Confidence Threshold Alerts in the UI
+
+**Problem today:** `confidence_score` is displayed as a number but low-confidence fields look identical to high-confidence ones. A clinician has no visual cue that a diagnosis with 58% confidence needs more scrutiny than one with 92%.
+
+**Solution (already partially implemented — needs field-level extension):**
+
+Current behaviour: confidence score shown as a single number in the AI Rationale card.
+
+Enhanced behaviour:
+- If `confidence_score < 70` → show a yellow `⚠ Requires Review` banner on the profile page
+- If `confidence_score < 50` → show a red `⛔ Low Confidence — Do Not Act Without Physician Sign-off` banner
+- In the worklist, add a "?" icon on low-confidence rows
+
+```jsx
+// In ProfileHeader.jsx
+{patient.confidence_score < 70 && (
+  <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-2 text-yellow-800 text-sm">
+    ⚠ AI confidence {patient.confidence_score}% — key fields require physician verification before acting
+  </div>
+)}
+```
+
+---
+
+### 4. Physician Sign-off Workflow
+
+**Problem today:** AI output goes directly to the UI with no validation step. A wrong diagnosis displays with the same visual weight as a correct one.
+
+**Solution:** Two-state field system
+
+Every AI-generated field gets a status: `pending_review` | `approved` | `overridden`
+
+```
+AI generates diagnosis → status: pending_review (shown in yellow)
+        ↓
+Physician reviews in dashboard
+        ↓
+Clicks "Approve" → status: approved (shown in green, locked)
+     or
+Clicks "Override" → types correct value → status: overridden (shown in blue, shows both AI and physician value)
+```
+
+**Database schema addition:**
+```sql
+CREATE TABLE field_reviews (
+  patient_id     VARCHAR,
+  field_name     VARCHAR,       -- 'primary_diagnosis', 'icd10_code', etc.
+  ai_value       TEXT,
+  reviewed_value TEXT,
+  status         ENUM('pending', 'approved', 'overridden'),
+  reviewed_by    VARCHAR,       -- physician user ID
+  reviewed_at    TIMESTAMP
+);
+```
+
+This creates a feedback loop — overridden fields can be used to fine-tune the model over time.
+
+---
+
+### 5. Audit Trail
+
+**Problem today:** There is no record of what the AI output was, which model version produced it, or what input data it used. If a patient outcome is poor and the admission decision was influenced by the AI, there is no way to investigate.
+
+**Solution:** Immutable inference log
+
+```python
+# In process_patients.py — after every successful API call
+def log_inference(patient_id, input_data, output_data, model, duration_ms):
+    audit_record = {
+        "inference_id": str(uuid.uuid4()),
+        "timestamp": datetime.utcnow().isoformat(),
+        "model": model,                          # "claude-haiku-4-5-20251001"
+        "model_version_hash": get_model_hash(),  # locks to exact model snapshot
+        "patient_id": patient_id,
+        "input_hash": hashlib.sha256(           # hash of input — proves input wasn't altered
+            json.dumps(input_data).encode()
+        ).hexdigest(),
+        "output": output_data,
+        "duration_ms": duration_ms,
+        "prompt_version": PROMPT_VERSION,        # version your prompt_template.py
+    }
+    # Write to append-only log (S3, CloudWatch, or PostgreSQL with no UPDATE/DELETE permissions)
+    append_to_audit_log(audit_record)
+```
+
+**What this enables:**
+- Reproduce any past inference exactly
+- Compare outputs if model is upgraded
+- Legal defensibility — "here is exactly what the AI said, at this time, on this input"
+- Detect model drift over time (same input, different output after model update)
+
+---
+
+### Production Architecture (Full)
+
+```
+Excel / HIS Integration
+        ↓
+FastAPI Backend
+        ↓
+RAG Pipeline (pgvector + clinical guidelines)
+        ↓
+Claude API (with grounded context)
+        ↓
+ICD-10 Validation Layer (NLM API)
+        ↓
+PostgreSQL (patients + field_reviews + audit_log)
+        ↓
+React Frontend
+    ├── Worklist (with confidence indicators)
+    ├── Patient Profile (with pending/approved field states)
+    └── Physician Review Queue
+        ↓
+Audit Log (append-only, S3 or CloudWatch)
+```
+
+---
+
 ## Documentation
 
 - [AI Inference Logic](docs/ai-inference-logic.md) — risk scoring methodology, prompt design, confidence scoring

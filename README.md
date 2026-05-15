@@ -2,7 +2,8 @@
 
 A clinical AI system that transforms raw hospital patient data into structured admission intelligence — risk scores, ICD-10 codes, red flags, treatment pathways, revenue estimates, and more.
 
-**Live Demo:** https://docstribe-ai-liart.vercel.app
+**Live Demo:** https://docstribe-ai-liart.vercel.app  
+**GitHub:** https://github.com/kritikasharma4/intelligence-Dashboard
 
 ---
 
@@ -10,55 +11,109 @@ A clinical AI system that transforms raw hospital patient data into structured a
 
 Hospitals receive hundreds of patient records daily with unstructured clinical notes. This system uses Claude AI (Anthropic) to parse those notes and generate actionable admission intelligence for clinical and operational teams.
 
-**Upload** an Excel file → **AI processes** each patient → **Dashboard** shows prioritised worklist with deep clinical profiles.
+**Upload** an Excel file → **AI processes** each patient → **Dashboard** shows a prioritised worklist with deep clinical profiles.
 
 ---
 
 ## Key Features
 
 ### Upload Page
-- Drag & drop Excel file upload
-- Simulated AI processing with step-by-step progress (parsing → ICD-10 inference → risk scoring → revenue estimation)
+- Drag & drop Excel file upload with file validation
+- Simulated AI processing with step-by-step progress animation (parsing → ICD-10 inference → risk scoring → revenue estimation)
 - One-click demo dataset loader
 
 ### Admission Worklist
 - All patients ranked by AI-assigned risk score
-- Filter by: Risk category (Critical / High / Medium / Low), Admission type (Emergency / Urgent / Elective), Department
-- Live search across name, ID, diagnosis, department
-- Stats strip: total patients, critical count, avg LOS, estimated revenue
-- Risk cohort sidebar for quick navigation
-- Each row shows: diagnosis, ICD-10 code, risk badge, bed type, revenue, red flag count
+- **Two view modes:** List (table) and Cohort (grouped by disease cohort)
+- Filter by: Risk category · Admission type · Department · Free-text search
+- **Action banner:** urgent alert strip when critical/time-critical patients are present — hides once filtered
+- **Stats strip:** total patients, critical count, high risk count, surgical cases, avg LOS, estimated revenue — with revenue breakdown by insurance/cash/surgical pipeline
+- **Risk cohort sidebar** for quick navigation (visible at 1024px+)
+- Each row shows: patient name, risk trend (↑↓→), priority tags, diagnosis, ICD-10, risk badge, admission type, admission likelihood %, bed type, revenue, red flag count
+
+### Disease Cohort View
+- Groups patients by disease cohort: Cardiac, Respiratory, Neurological, Surgical, Metabolic, Oncology, Renal/Urology, Gastro/Hepatology, Obstetrics, Haematology, Infectious Disease, General Medicine
+- Each cohort shows: patient count, critical case count, total cohort revenue
+- Cohorts sorted by highest risk score descending
+- Patient cards inside each cohort show all key fields at a glance
 
 ### Patient Profile Page
-- **Clinical Summary** — diagnosis, ICD-10, history, comorbidities, symptoms, case type
-- **Red Flags** — AI-extracted clinical warning signals with progression narrative
-- **Clinical Timeline** — day-by-day treatment plan from admission to discharge
-- **Treatment Plan** — recommended + secondary treatment, readmission/dropout risk
-- **Risk Analysis** — score bar (1–10), AI reasoning, data completeness
-- **Operational Details** — revenue, LOS, bed type, inferred procedure name
-- **AI Rationale** — model's reasoning with confidence score
+Right column (action-first order):
+- **Next Action Card** — urgency level (Critical/High/Medium/Low), recommended clinical action, admission likelihood %, risk score
+- **Risk Analysis** — score bar (1–10), risk category badge, AI reasoning, data completeness, readmission risk, dropout risk
+- **Physician Sign-off** — approve or override AI-generated fields (diagnosis, ICD-10, treatment, admission type, bed type); status persists in localStorage
+- **Operational Details** — expected revenue, estimated LOS, bed type, inferred procedure
+- **AI Rationale** — model reasoning with confidence score bar and clinical disclaimer
+
+Left column (clinical detail):
+- **Clinical Summary** — diagnosis, ICD-10 with verified/unverified badge, history, comorbidities, symptoms, case type
+- **Red Flags** — AI-extracted clinical warning signals with disease progression narrative
+- **Clinical Timeline** — day-by-day events from admission to discharge
+- **Treatment Plan** — recommended + secondary treatment pathway, deferred care window
 
 ---
 
-## AI Inference Logic
+## AI Inference Fields
 
-Each patient record is sent to **Claude Haiku** with a structured prompt. The model returns a JSON object containing:
+Each patient record is sent to **Claude Haiku** (claude-haiku-4-5-20251001) with a structured prompt. The model returns a JSON object:
 
 | Field | How it's generated |
 |-------|-------------------|
-| `risk_score` (1–10) | Signal-weighted: vitals, labs, acuity, comorbidities, age |
+| `risk_score` (1–10) | Signal-weighted: vitals, acuity, comorbidities, red flags |
 | `risk_category` | Critical / High / Medium / Low mapped from score |
 | `primary_diagnosis` | Inferred from clinical note + department context |
 | `icd10_code` | ICD-10-CM code mapped to inferred diagnosis |
-| `red_flags` | Specific clinical signals extracted from notes |
+| `icd10_verified` | True if confidence ≥ 70, False otherwise — triggers UI badge |
+| `red_flags` | Specific clinical warning signals extracted from notes |
 | `clinical_timeline` | Day-by-day care pathway for the diagnosis |
 | `best_treatment` | Evidence-based first-line treatment |
-| `expected_revenue` | Estimated from procedure complexity + LOS |
+| `secondary_treatment` | Alternative if primary pathway not feasible |
+| `deferred_time` | Whether care can be safely delayed and by how long |
+| `expected_revenue` | Estimated from procedure complexity + LOS + department |
 | `estimated_los_days` | Evidence-based average for diagnosis + severity |
 | `readmission_risk` | Based on chronicity, compliance signals, social factors |
+| `dropout_risk` | Likelihood patient leaves before completing admission |
 | `confidence_score` | Model self-assessed based on data completeness |
+| `ai_rationale` | Plain-English explanation of all inferences made |
 
-See [docs/ai-inference-logic.md](docs/ai-inference-logic.md) for full details.
+### Post-pipeline derived fields (rule-based, not Claude)
+
+| Field | Derivation |
+|-------|-----------|
+| `admission_conversion_probability` | Rule-based index from Claude fields: admission_type (+30 Emergency, +15 Urgent) + dropout_risk (-25 High, -10 Medium, +5 Low) + Insurance (+10) + (risk_score−5)×2 + readmission_risk (+5 if High) + red_flag count (+3 each, capped at 12). Clamped [10, 98]. |
+| `disease_cohort` | Mapped from department name |
+| `priority_tags` | Derived from risk_category + admission_type + dropout_risk combination |
+| `risk_trend` | Extracted from keywords in the `progression` text (worsening/improving/stable) |
+| `next_action` | Mapped from risk_category + admission_type to a clinical action string + urgency level |
+
+---
+
+## ICD-10 Verification
+
+Fields with `icd10_verified: false` are shown with a yellow "Unverified · Coder Review Required" badge in both the worklist and the patient profile. Verification is based on the model's `confidence_score` — scores below 70 are flagged. In production this would be replaced by a programmatic NLM ICD-10-CM API validation check.
+
+---
+
+## Physician Sign-off Workflow
+
+Every AI-generated clinical field on the profile page has three states:
+
+- **Pending** (yellow) — AI output, not yet reviewed
+- **Approved** (green) — physician confirmed the value is correct
+- **Overridden** (blue) — physician corrected the value; both AI original and physician value are shown
+
+Reviews persist in `localStorage` keyed by patient ID and field name. In production these would sync to a `field_reviews` table in PostgreSQL with physician ID and timestamp for audit purposes.
+
+---
+
+## Confidence Threshold Alerts
+
+| Score | UI Behaviour |
+|-------|-------------|
+| ≥ 70% | No alert — normal display |
+| 50–69% | Yellow banner: "AI Confidence X% — key fields require physician verification" |
+| < 50% | Red banner: "Low AI Confidence — do not act without physician sign-off" |
+| < 70% | Worklist row shows "⚠ Low confidence" chip under patient name |
 
 ---
 
@@ -71,8 +126,9 @@ See [docs/ai-inference-logic.md](docs/ai-inference-logic.md) for full details.
 | Routing | React Router v6 |
 | AI Model | Claude Haiku (claude-haiku-4-5-20251001) |
 | AI SDK | Anthropic Python SDK |
-| Data Pipeline | Python + pandas |
-| Deployment | Vercel |
+| Data Pipeline | Python 3 + pandas + openpyxl |
+| State persistence | localStorage (physician reviews) |
+| Deployment | Vercel (static SPA) |
 
 ---
 
@@ -82,16 +138,19 @@ See [docs/ai-inference-logic.md](docs/ai-inference-logic.md) for full details.
 Excel File (466 patient records)
         ↓
 pipeline/process_patients.py
-        ↓  Claude Haiku API — one call per patient
-pipeline/output/patients.json  (20 representative patients)
+   ├── select_representative_sample() — round-robin across departments, 20 patients
+   ├── call_claude() — one API call per patient, Claude Haiku
+   └── compute_admission_conversion_probability() — rule-based from Claude fields
+        ↓
+pipeline/output/patients.json  (20 patients, ~40 fields each)
         ↓  copied to
 src/data/patients.json
-        ↓  bundled at build time
-React SPA → Vercel (static, no backend needed)
+        ↓  bundled at build time by Vite
+React SPA → Vercel (fully static, no backend required)
 ```
 
-**Why no backend/database?**
-AI inference runs offline once (pre-computation pattern). The React app reads static JSON — instant load, zero infrastructure, works anywhere. See [docs/architecture-notes.md](docs/architecture-notes.md).
+**Why no backend?**  
+AI inference runs offline once (pre-computation pattern). The React app reads static JSON — instant load, zero infrastructure, works anywhere. This is appropriate for a proof-of-concept; production would require a FastAPI backend with a PostgreSQL database.
 
 ---
 
@@ -100,32 +159,51 @@ AI inference runs offline once (pre-computation pattern). The React app reads st
 ```
 DocstribeAI/
 ├── pipeline/
-│   ├── process_patients.py       # AI pipeline: Excel → patients.json
-│   ├── prompt_template.py        # Claude system prompt + patient prompt builder
-│   └── output/patients.json      # Generated AI output
+│   ├── process_patients.py        # AI pipeline: Excel → patients.json
+│   ├── prompt_template.py         # Claude system prompt + patient prompt builder
+│   └── output/patients.json       # Generated AI output (committed for demo)
 ├── src/
-│   ├── data/patients.json        # Bundled for React
+│   ├── data/patients.json         # Bundled for React
 │   ├── pages/
-│   │   ├── UploadPage.jsx        # Upload + processing animation
-│   │   ├── WorklistPage.jsx      # Admission worklist
+│   │   ├── UploadPage.jsx         # Upload + processing animation
+│   │   ├── WorklistPage.jsx       # Admission worklist (list + cohort views)
 │   │   └── PatientProfilePage.jsx
 │   ├── components/
-│   │   ├── worklist/             # StatsStrip, WorklistHeader, PatientRow, CohortSidebar
-│   │   ├── profile/              # ProfileHeader, ClinicalSummaryCard, RedFlagsCard,
-│   │   │                         # ClinicalTimeline, TreatmentCard, RiskCard,
-│   │   │                         # OperationalCard, AIRationaleCard
-│   │   └── shared/               # RiskBadge, FilterChip, LoadingSpinner
+│   │   ├── worklist/
+│   │   │   ├── StatsStrip.jsx     # 6 KPI cards + revenue breakdown strip
+│   │   │   ├── WorklistHeader.jsx # Search, filters, view toggle
+│   │   │   ├── PatientRow.jsx     # Table row with tags, trend, conversion %
+│   │   │   ├── CohortSidebar.jsx  # Left sidebar — risk-grouped patient list
+│   │   │   ├── CohortView.jsx     # Disease cohort card grid view
+│   │   │   └── ActionBanner.jsx   # Urgent alert banner for critical patients
+│   │   ├── profile/
+│   │   │   ├── ProfileHeader.jsx  # Name, risk badge, KPI chips, confidence banners
+│   │   │   ├── NextActionCard.jsx # Urgency level, next action, admission likelihood
+│   │   │   ├── ClinicalSummaryCard.jsx
+│   │   │   ├── RedFlagsCard.jsx
+│   │   │   ├── ClinicalTimeline.jsx
+│   │   │   ├── TreatmentCard.jsx
+│   │   │   ├── RiskCard.jsx
+│   │   │   ├── OperationalCard.jsx
+│   │   │   ├── PhysicianReviewCard.jsx  # Approve/override workflow
+│   │   │   └── AIRationaleCard.jsx
+│   │   └── shared/
+│   │       ├── RiskBadge.jsx
+│   │       ├── FilterChip.jsx
+│   │       ├── ReviewableField.jsx  # Pending/approved/overridden field wrapper
+│   │       └── LoadingSpinner.jsx
 │   ├── hooks/
-│   │   ├── usePatients.js        # Filter + search logic
-│   │   └── usePatientById.js     # Single patient lookup
+│   │   ├── usePatients.js           # Filter + search logic
+│   │   ├── usePatientById.js        # Single patient lookup
+│   │   └── usePhysicianReview.js    # localStorage review state per patient
 │   └── utils/
-│       ├── riskColors.js         # Risk category → Tailwind class mapping
-│       └── formatters.js         # Currency, date, LOS formatters
+│       ├── riskColors.js            # Risk category → Tailwind class mapping
+│       └── formatters.js            # Currency, date, LOS formatters
 ├── docs/
-│   ├── ai-inference-logic.md     # Full AI scoring methodology
-│   ├── architecture-notes.md     # Design decisions + data flow
-│   └── assumptions.md            # Scope, limitations, trade-offs
-└── vercel.json                   # SPA routing config
+│   ├── ai-inference-logic.md        # Full AI scoring methodology
+│   ├── architecture-notes.md        # Design decisions + data flow
+│   └── assumptions.md               # Scope, limitations, trade-offs
+└── vercel.json                      # SPA routing rewrite rule
 ```
 
 ---
@@ -138,7 +216,6 @@ npm install
 
 # Start dev server
 npm run dev
-
 # Open http://localhost:5173
 ```
 
@@ -147,6 +224,7 @@ To regenerate patient data with the AI pipeline:
 cd pipeline
 pip3 install anthropic pandas openpyxl
 ANTHROPIC_API_KEY=your_key python3 process_patients.py
+cp output/patients.json ../src/data/patients.json
 ```
 
 ---
@@ -155,160 +233,37 @@ ANTHROPIC_API_KEY=your_key python3 process_patients.py
 
 The current system is a proof-of-concept. Below is what would be required to make it clinically safe and production-ready.
 
----
-
 ### 1. RAG — Grounding AI in Verified Clinical Guidelines
 
-**Problem today:** Claude infers diagnoses and red flags from training data alone. There is no auditable source — it cannot say "SpO2 < 92% is a red flag per WHO Pulse Oximetry Guidelines 2011."
+**Problem today:** Claude infers red flags and treatments from training data alone. It cannot cite "SpO2 < 92% is a red flag per WHO Pulse Oximetry Guidelines 2011."
 
-**Solution:** Retrieval Augmented Generation (RAG)
+**Solution:** At inference time, retrieve the top-N relevant guideline chunks (NICE, WHO, UpToDate) from a vector database (pgvector/Pinecone) and inject them into the prompt. Every red flag and treatment recommendation becomes traceable to a specific guideline version.
 
-```
-Clinical Guidelines (NICE, WHO, UpToDate PDFs)
-        ↓
-Chunked + embedded into a vector database (e.g. Pinecone, pgvector)
-        ↓
-At inference time: retrieve the top-3 relevant guideline chunks for the patient's department/symptoms
-        ↓
-Inject retrieved chunks into Claude's prompt as context
-        ↓
-Claude now cites a specific guideline when classifying red flags or suggesting treatment
-```
+### 2. ICD-10 Validation via NLM API
 
-**What changes in the prompt:**
-```
-Context from NICE Guidelines (CG101 - Chronic heart failure):
-"Refer urgently if new-onset chest pain with ST changes..."
+**Problem today:** No programmatic check that Claude's ICD-10 code is valid or correctly mapped.
 
-Given this context and the patient record below, classify red flags...
-```
+**Solution:** Post-processing step calling the NLM ICD-10-CM API after each inference. Mismatches or invalid codes set `icd10_verified: false` and block downstream billing until a coder reviews.
 
-**Result:** Every red flag and treatment recommendation is traceable to a specific guideline version. Auditable. Defensible in a clinical setting.
+### 3. Field-Level Confidence (not just overall score)
 
----
+**Problem today:** A single `confidence_score` covers all fields equally. A diagnosis inferred from clear notes can share the same score as a revenue estimate that was mostly guessed.
 
-### 2. ICD-10 Validation Layer
+**Solution:** Claude returns a confidence value per field, not per patient. The UI highlights individual uncertain fields rather than the whole record.
 
-**Problem today:** Claude returns an ICD-10 code like `I20.0` — but there is no programmatic check that this code is valid, current, or correctly mapped to the diagnosis.
+### 4. Admission Probability — ML Model
 
-**Solution:** Post-processing validation step in the pipeline
+**Problem today:** `admission_conversion_probability` is a rule-based scoring index, not a trained probability. It cannot learn from outcomes.
 
-```python
-import requests
-
-def validate_icd10(code: str, diagnosis: str) -> dict:
-    # Query the official NLM ICD-10-CM API
-    url = f"https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms={code}"
-    response = requests.get(url).json()
-    
-    valid_codes = response[3]  # list of [code, description] pairs
-    matched = next((c for c in valid_codes if c[0] == code), None)
-    
-    return {
-        "valid": matched is not None,
-        "official_description": matched[1] if matched else None,
-        "mismatch": matched and diagnosis.lower() not in matched[1].lower()
-    }
-```
-
-If `valid: false` or `mismatch: true` — flag the field in the UI as "ICD-10 unverified" and block it from downstream billing systems until a coder reviews it.
-
----
-
-### 3. Confidence Threshold Alerts in the UI
-
-**Problem today:** `confidence_score` is displayed as a number but low-confidence fields look identical to high-confidence ones. A clinician has no visual cue that a diagnosis with 58% confidence needs more scrutiny than one with 92%.
-
-**Solution (already partially implemented — needs field-level extension):**
-
-Current behaviour: confidence score shown as a single number in the AI Rationale card.
-
-Enhanced behaviour:
-- If `confidence_score < 70` → show a yellow `⚠ Requires Review` banner on the profile page
-- If `confidence_score < 50` → show a red `⛔ Low Confidence — Do Not Act Without Physician Sign-off` banner
-- In the worklist, add a "?" icon on low-confidence rows
-
-```jsx
-// In ProfileHeader.jsx
-{patient.confidence_score < 70 && (
-  <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-2 text-yellow-800 text-sm">
-    ⚠ AI confidence {patient.confidence_score}% — key fields require physician verification before acting
-  </div>
-)}
-```
-
----
-
-### 4. Physician Sign-off Workflow
-
-**Problem today:** AI output goes directly to the UI with no validation step. A wrong diagnosis displays with the same visual weight as a correct one.
-
-**Solution:** Two-state field system
-
-Every AI-generated field gets a status: `pending_review` | `approved` | `overridden`
-
-```
-AI generates diagnosis → status: pending_review (shown in yellow)
-        ↓
-Physician reviews in dashboard
-        ↓
-Clicks "Approve" → status: approved (shown in green, locked)
-     or
-Clicks "Override" → types correct value → status: overridden (shown in blue, shows both AI and physician value)
-```
-
-**Database schema addition:**
-```sql
-CREATE TABLE field_reviews (
-  patient_id     VARCHAR,
-  field_name     VARCHAR,       -- 'primary_diagnosis', 'icd10_code', etc.
-  ai_value       TEXT,
-  reviewed_value TEXT,
-  status         ENUM('pending', 'approved', 'overridden'),
-  reviewed_by    VARCHAR,       -- physician user ID
-  reviewed_at    TIMESTAMP
-);
-```
-
-This creates a feedback loop — overridden fields can be used to fine-tune the model over time.
-
----
+**Solution:** Logistic regression or gradient boosted model trained on historical admission outcomes. Features: age, comorbidity count, department, admission type, LOS, insurance type, red flag severity, prior visit count. Model learns weights from data, not hardcoded rules.
 
 ### 5. Audit Trail
 
-**Problem today:** There is no record of what the AI output was, which model version produced it, or what input data it used. If a patient outcome is poor and the admission decision was influenced by the AI, there is no way to investigate.
+**Problem today:** No record of what the AI output was, which model version produced it, or what input it used.
 
-**Solution:** Immutable inference log
+**Solution:** Append-only inference log (S3 / CloudWatch / PostgreSQL with no UPDATE/DELETE) capturing: inference ID, timestamp, model version, input hash, full output, prompt version. Enables reproducibility, model drift detection, and legal defensibility.
 
-```python
-# In process_patients.py — after every successful API call
-def log_inference(patient_id, input_data, output_data, model, duration_ms):
-    audit_record = {
-        "inference_id": str(uuid.uuid4()),
-        "timestamp": datetime.utcnow().isoformat(),
-        "model": model,                          # "claude-haiku-4-5-20251001"
-        "model_version_hash": get_model_hash(),  # locks to exact model snapshot
-        "patient_id": patient_id,
-        "input_hash": hashlib.sha256(           # hash of input — proves input wasn't altered
-            json.dumps(input_data).encode()
-        ).hexdigest(),
-        "output": output_data,
-        "duration_ms": duration_ms,
-        "prompt_version": PROMPT_VERSION,        # version your prompt_template.py
-    }
-    # Write to append-only log (S3, CloudWatch, or PostgreSQL with no UPDATE/DELETE permissions)
-    append_to_audit_log(audit_record)
-```
-
-**What this enables:**
-- Reproduce any past inference exactly
-- Compare outputs if model is upgraded
-- Legal defensibility — "here is exactly what the AI said, at this time, on this input"
-- Detect model drift over time (same input, different output after model update)
-
----
-
-### Production Architecture (Full)
+### Production Architecture
 
 ```
 Excel / HIS Integration
@@ -319,12 +274,12 @@ RAG Pipeline (pgvector + clinical guidelines)
         ↓
 Claude API (with grounded context)
         ↓
-ICD-10 Validation Layer (NLM API)
+ICD-10 Validation (NLM API)
         ↓
 PostgreSQL (patients + field_reviews + audit_log)
         ↓
 React Frontend
-    ├── Worklist (with confidence indicators)
+    ├── Worklist (with confidence indicators, cohort view)
     ├── Patient Profile (with pending/approved field states)
     └── Physician Review Queue
         ↓

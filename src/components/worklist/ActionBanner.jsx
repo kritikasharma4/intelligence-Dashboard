@@ -1,10 +1,12 @@
-export default function ActionBanner({ patients, onFilter }) {
+export default function ActionBanner({ patients, onFilter, activeRiskFilter }) {
   const critical = patients.filter(p => p.risk_category === 'Critical')
   const timeCritical = patients.filter(p => p.priority_tags?.includes('time_critical'))
   const deteriorating = patients.filter(p => p.priority_tags?.includes('deteriorating'))
   const highValue = patients.filter(p => p.priority_tags?.includes('high_value'))
 
+  // Hide banner once user has already filtered to critical
   if (critical.length === 0 && timeCritical.length === 0) return null
+  if (activeRiskFilter === 'Critical') return null
 
   return (
     <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-xl p-4 mb-5 text-white shadow-lg">

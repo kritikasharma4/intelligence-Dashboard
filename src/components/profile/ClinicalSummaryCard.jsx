@@ -42,7 +42,7 @@ export default function ClinicalSummaryCard({ patient }) {
             <div className="flex flex-wrap gap-1.5">
               {patient.comorbidities?.length > 0
                 ? patient.comorbidities.map((c, i) => (
-                    <span key={i} className="text-xs bg-purple-50 text-purple-700 border border-purple-100 px-2 py-0.5 rounded-full">{c}</span>
+                    <span key={i} className="text-xs bg-slate-100 text-slate-600 border border-slate-200 px-2 py-0.5 rounded-full">{c}</span>
                   ))
                 : <span className="text-xs text-gray-400 italic">None documented</span>}
             </div>
@@ -51,7 +51,7 @@ export default function ClinicalSummaryCard({ patient }) {
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Presenting Symptoms</p>
             <div className="flex flex-wrap gap-1.5">
               {patient.possible_symptoms?.map((s, i) => (
-                <span key={i} className="text-xs bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full">{s}</span>
+                <span key={i} className="text-xs bg-sky-50 text-sky-700 border border-sky-100 px-2 py-0.5 rounded-full">{s}</span>
               ))}
             </div>
           </div>

@@ -55,7 +55,7 @@ export default function ProfileHeader({ patient }) {
               { label: 'Est. LOS', value: formatLOS(patient.estimated_los_days), color: 'text-blue-700' },
               { label: 'AI Confidence', value: `${patient.confidence_score}%`, color: confidenceCritical ? 'text-red-600' : confidenceLow ? 'text-yellow-600' : 'text-gray-800' },
             ].map(k => (
-              <div key={k.label} className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 text-center min-w-[90px]">
+              <div key={k.label} className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-center min-w-[90px] shadow-sm">
                 <p className={`text-lg font-bold ${k.color}`}>{k.value}</p>
                 <p className="text-xs text-gray-400 mt-0.5">{k.label}</p>
               </div>

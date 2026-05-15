@@ -69,7 +69,7 @@ function PatientCard({ patient }) {
 
       <div className="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between">
         <span className="text-xs text-gray-400">{patient.department}</span>
-        <span className="text-xs font-semibold text-blue-600">{patient.admission_conversion_probability}% conv.</span>
+        <span className="text-xs font-semibold text-blue-600">{patient.admission_conversion_probability}% admission</span>
       </div>
     </div>
   )

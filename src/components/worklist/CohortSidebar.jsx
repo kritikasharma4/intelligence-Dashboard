@@ -10,7 +10,7 @@ export default function CohortSidebar({ patients, selected, onSelect }) {
   }))
 
   return (
-    <aside className="w-64 flex-shrink-0 hidden xl:block">
+    <aside className="w-56 flex-shrink-0 hidden lg:block">
       <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Risk Cohorts</h3>
       <div className="space-y-4">
         {byRisk.map(({ cat, list, config }) => (

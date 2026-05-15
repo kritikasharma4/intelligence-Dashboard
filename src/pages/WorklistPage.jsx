@@ -53,7 +53,7 @@ export default function WorklistPage() {
         <main className="flex-1 min-w-0">
           <StatsStrip stats={stats} patients={patients} />
 
-          <ActionBanner patients={filtered} onFilter={setRiskFilter} />
+          <ActionBanner patients={filtered} onFilter={setRiskFilter} activeRiskFilter={riskFilter} />
 
           {viewMode === 'table' ? (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

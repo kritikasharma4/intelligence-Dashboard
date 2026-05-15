@@ -10,12 +10,12 @@ export default function OperationalCard({ patient }) {
 
       <div className="p-5 space-y-3">
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-green-50 border border-green-100 rounded-lg p-3 text-center">
-            <p className="text-lg font-bold text-green-700">{formatCurrency(patient.expected_revenue)}</p>
+          <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-3 text-center">
+            <p className="text-lg font-bold text-emerald-700">{formatCurrency(patient.expected_revenue)}</p>
             <p className="text-xs text-gray-500 mt-0.5">Expected Revenue</p>
           </div>
-          <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 text-center">
-            <p className="text-lg font-bold text-blue-700">{formatLOS(patient.estimated_los_days)}</p>
+          <div className="bg-sky-50 border border-sky-100 rounded-lg p-3 text-center">
+            <p className="text-lg font-bold text-sky-700">{formatLOS(patient.estimated_los_days)}</p>
             <p className="text-xs text-gray-500 mt-0.5">Estimated LOS</p>
           </div>
         </div>

@@ -47,8 +47,8 @@ export default function PatientProfilePage() {
         <div className="space-y-5">
           <NextActionCard patient={patient} />
           <RiskCard patient={patient} />
-          <OperationalCard patient={patient} />
           <PhysicianReviewCard patient={patient} />
+          <OperationalCard patient={patient} />
           <AIRationaleCard patient={patient} />
         </div>
 

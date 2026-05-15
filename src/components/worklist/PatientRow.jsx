@@ -83,7 +83,7 @@ export default function PatientRow({ patient }) {
         }`}>
           {patient.admission_type}
         </span>
-        <p className="text-xs text-green-600 font-semibold mt-1">{patient.admission_conversion_probability}% conv.</p>
+        <p className="text-xs text-green-600 font-semibold mt-1">{patient.admission_conversion_probability}% admission</p>
       </td>
 
       {/* Bed */}

@@ -58,7 +58,7 @@
     "deferred_time": null,
     "risk_category": "High",
     "risk_score": 7,
-    "risk_reasoning": "Pediatric patient with SpO2 88% on arrival, no response to home nebulization, known poorly-controlled asthma \u2014 high short-term deterioration risk.",
+    "risk_reasoning": "Pediatric patient with SpO2 88% on arrival, no response to home nebulization, known poorly-controlled asthma — high short-term deterioration risk.",
     "readmission_risk": "High",
     "dropout_risk": "Medium",
     "bed_type_required": "Paediatric HDU",
@@ -71,9 +71,9 @@
     "priority_tags": [],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Paediatric HDU bed \u2014 Emergency admission",
+      "action": "Arrange Paediatric HDU bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "worsening"
   },
@@ -119,11 +119,11 @@
       },
       {
         "day": 1,
-        "event": "Cardiology review \u2014 NSTEMI ruled in, heparin infusion started"
+        "event": "Cardiology review — NSTEMI ruled in, heparin infusion started"
       },
       {
         "day": 2,
-        "event": "Coronary angiography performed \u2014 70% LAD stenosis found"
+        "event": "Coronary angiography performed — 70% LAD stenosis found"
       },
       {
         "day": 3,
@@ -145,7 +145,7 @@
     "readmission_risk": "Medium",
     "dropout_risk": "Low",
     "bed_type_required": "CCU",
-    "ai_rationale": "ST depression with ongoing rest pain and multiple cardiac risk factors classify this as ACS requiring immediate invasive strategy. Cash patient \u2014 high revenue potential from PCI pathway.",
+    "ai_rationale": "ST depression with ongoing rest pain and multiple cardiac risk factors classify this as ACS requiring immediate invasive strategy. Cash patient — high revenue potential from PCI pathway.",
     "confidence_score": 92,
     "data_completeness": "High",
     "icd10_verified": true,
@@ -159,7 +159,7 @@
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "stable"
   },
@@ -189,7 +189,7 @@
       "Shortening of Limb"
     ],
     "red_flags": [
-      "Age >70 with hip fracture \u2014 30-day mortality risk 10%",
+      "Age >70 with hip fracture — 30-day mortality risk 10%",
       "Cognitive impairment complicates post-op care",
       "Delirium risk post-anaesthesia"
     ],
@@ -201,7 +201,7 @@
       },
       {
         "day": 1,
-        "event": "Pre-op workup: ECG, Echo, blood work \u2014 cleared for surgery"
+        "event": "Pre-op workup: ECG, Echo, blood work — cleared for surgery"
       },
       {
         "day": 2,
@@ -209,7 +209,7 @@
       },
       {
         "day": 3,
-        "event": "Physio mobilization started \u2014 partial weight bearing"
+        "event": "Physio mobilization started — partial weight bearing"
       },
       {
         "day": 5,
@@ -227,7 +227,7 @@
     "deferred_time": null,
     "risk_category": "High",
     "risk_score": 8,
-    "risk_reasoning": "Elderly patient with hip fracture \u2014 high 30-day mortality risk. Cognitive impairment increases post-op delirium risk. Delay to surgery beyond 48h worsens outcomes.",
+    "risk_reasoning": "Elderly patient with hip fracture — high 30-day mortality risk. Cognitive impairment increases post-op delirium risk. Delay to surgery beyond 48h worsens outcomes.",
     "readmission_risk": "High",
     "dropout_risk": "Low",
     "bed_type_required": "Orthopaedic Ward",
@@ -245,9 +245,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Orthopaedic Ward bed \u2014 Emergency admission",
+      "action": "Arrange Orthopaedic Ward bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "stable"
   },
@@ -259,7 +259,7 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "OBG Consultation",
-    "inferred_procedure_name": "High-Risk Pregnancy Monitoring \u2014 Preeclampsia",
+    "inferred_procedure_name": "High-Risk Pregnancy Monitoring — Preeclampsia",
     "admission_type": "Emergency",
     "case_type": "High-Risk Obstetrics",
     "primary_diagnosis": "Severe Preeclampsia at 34 Weeks",
@@ -276,10 +276,10 @@
       "Epigastric Pain"
     ],
     "red_flags": [
-      "BP 160/110 \u2014 severe range",
+      "BP 160/110 — severe range",
       "Proteinuria 3+",
-      "Visual symptoms \u2014 impending eclampsia",
-      "Platelet trend: 98,000 \u2014 HELLP risk"
+      "Visual symptoms — impending eclampsia",
+      "Platelet trend: 98,000 — HELLP risk"
     ],
     "progression": "BP progressively elevated over 2 weeks. Now with visual symptoms and proteinuria suggesting end-organ involvement.",
     "clinical_timeline": [
@@ -297,7 +297,7 @@
       },
       {
         "day": 2,
-        "event": "Platelets dropped to 82,000 \u2014 HELLP syndrome confirmed"
+        "event": "Platelets dropped to 82,000 — HELLP syndrome confirmed"
       },
       {
         "day": 2,
@@ -337,7 +337,7 @@
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "stable"
   },
@@ -349,10 +349,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Cash",
     "procedure_name": "Neurology Consultation",
-    "inferred_procedure_name": "Acute Ischaemic Stroke \u2014 Thrombolysis Candidate",
+    "inferred_procedure_name": "Acute Ischaemic Stroke — Thrombolysis Candidate",
     "admission_type": "Emergency",
     "case_type": "Acute Neurological",
-    "primary_diagnosis": "Acute Ischaemic Stroke \u2014 Left MCA Territory",
+    "primary_diagnosis": "Acute Ischaemic Stroke — Left MCA Territory",
     "icd10_code": "I63.311",
     "history": "63-year-old male with sudden onset right-sided weakness and aphasia for 2 hours. Known atrial fibrillation, not on anticoagulation. Smoker, hypertensive.",
     "comorbidities": [
@@ -367,15 +367,15 @@
       "Sudden Onset"
     ],
     "red_flags": [
-      "Symptom onset < 4.5 hours \u2014 thrombolysis window open",
-      "NIHSS score 14 \u2014 moderate-severe",
-      "AF without anticoagulation \u2014 cardioembolic stroke"
+      "Symptom onset < 4.5 hours — thrombolysis window open",
+      "NIHSS score 14 — moderate-severe",
+      "AF without anticoagulation — cardioembolic stroke"
     ],
     "progression": "Sudden onset 2 hours ago at home. FAST positive. Brought to ER within 45 minutes. Non-contrast CT: no haemorrhage.",
     "clinical_timeline": [
       {
         "day": 0,
-        "event": "ER arrival, NIHSS 14, CT head \u2014 no bleed, thrombolysis given within 3.5hrs"
+        "event": "ER arrival, NIHSS 14, CT head — no bleed, thrombolysis given within 3.5hrs"
       },
       {
         "day": 0,
@@ -383,11 +383,11 @@
       },
       {
         "day": 1,
-        "event": "Partial neurological improvement \u2014 NIHSS improved to 10"
+        "event": "Partial neurological improvement — NIHSS improved to 10"
       },
       {
         "day": 2,
-        "event": "Echo shows LAA thrombus \u2014 anticoagulation started cautiously after 48h"
+        "event": "Echo shows LAA thrombus — anticoagulation started cautiously after 48h"
       },
       {
         "day": 4,
@@ -420,11 +420,11 @@
       "deteriorating",
       "high_value"
     ],
-    "admission_conversion_probability": 98,
+    "admission_conversion_probability": 92,
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "stable"
   },
@@ -453,9 +453,9 @@
       "Altered Sensorium"
     ],
     "red_flags": [
-      "pH 7.18 \u2014 severe acidosis",
+      "pH 7.18 — severe acidosis",
       "Glucose 480 mg/dL with 4+ ketonuria",
-      "GCS 12 \u2014 altered sensorium"
+      "GCS 12 — altered sensorium"
     ],
     "progression": "Missed insulin doses for 2 days due to vomiting illness. Progressively worsening over 24 hours.",
     "clinical_timeline": [
@@ -465,7 +465,7 @@
       },
       {
         "day": 0,
-        "event": "Potassium 3.1 \u2014 IV KCl replacement started"
+        "event": "Potassium 3.1 — IV KCl replacement started"
       },
       {
         "day": 1,
@@ -503,9 +503,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange ICU / HDU bed \u2014 Emergency admission",
+      "action": "Arrange ICU / HDU bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "worsening"
   },
@@ -517,7 +517,7 @@
     "visit_date": "2025-05-12",
     "customer_type": "Cash",
     "procedure_name": "Urology Consultation",
-    "inferred_procedure_name": "Renal Colic \u2014 Ureteroscopic Stone Removal",
+    "inferred_procedure_name": "Renal Colic — Ureteroscopic Stone Removal",
     "admission_type": "Elective",
     "case_type": "Urological Procedure",
     "primary_diagnosis": "Ureteric Calculus with Hydronephrosis",
@@ -534,9 +534,9 @@
       "Urinary Frequency"
     ],
     "red_flags": [
-      "Creatinine 1.4 \u2014 obstructive uropathy affecting renal function",
+      "Creatinine 1.4 — obstructive uropathy affecting renal function",
       "Grade 2 hydronephrosis",
-      "8mm stone \u2014 unlikely to pass spontaneously"
+      "8mm stone — unlikely to pass spontaneously"
     ],
     "progression": "Two previous stone episodes. Current stone too large for medical expulsive therapy. Ureterorenoscopy planned.",
     "clinical_timeline": [
@@ -568,7 +568,7 @@
     "readmission_risk": "Medium",
     "dropout_risk": "Low",
     "bed_type_required": "Urology Ward",
-    "ai_rationale": "8mm obstructing stone with renal function impact requires elective URS. Risk score 5 reflects non-emergency but functionally significant obstruction. Cash patient \u2014 straightforward surgical pathway.",
+    "ai_rationale": "8mm obstructing stone with renal function impact requires elective URS. Risk score 5 reflects non-emergency but functionally significant obstruction. Cash patient — straightforward surgical pathway.",
     "confidence_score": 85,
     "data_completeness": "High",
     "icd10_verified": true,
@@ -579,9 +579,9 @@
     ],
     "admission_conversion_probability": 64,
     "next_action": {
-      "action": "Follow up for elective admission \u2014 surgical conversion opportunity",
+      "action": "Follow up for elective admission — surgical conversion opportunity",
       "urgency": "low",
-      "icon": "\ud83d\udcbc"
+      "icon": "💼"
     },
     "risk_trend": "stable"
   },
@@ -593,10 +593,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Gastroenterology OPD",
-    "inferred_procedure_name": "Upper GI Bleed \u2014 Variceal",
+    "inferred_procedure_name": "Upper GI Bleed — Variceal",
     "admission_type": "Emergency",
     "case_type": "GI Emergency",
-    "primary_diagnosis": "Acute Variceal Haemorrhage \u2014 Liver Cirrhosis",
+    "primary_diagnosis": "Acute Variceal Haemorrhage — Liver Cirrhosis",
     "icd10_code": "I85.01",
     "history": "51-year-old female with known alcoholic liver cirrhosis presenting with 3 episodes of haematemesis. BP 90/60, HR 118. Haemoglobin 7.2 g/dL. Jaundiced.",
     "comorbidities": [
@@ -612,8 +612,8 @@
     ],
     "red_flags": [
       "Haemodynamic instability: BP 90/60, HR 118",
-      "Active variceal bleeding \u2014 30-day mortality 15-20%",
-      "Hb 7.2 \u2014 severe anaemia"
+      "Active variceal bleeding — 30-day mortality 15-20%",
+      "Hb 7.2 — severe anaemia"
     ],
     "progression": "Acute onset haematemesis at home. Third episode in 6 months. Not on beta-blocker prophylaxis.",
     "clinical_timeline": [
@@ -623,7 +623,7 @@
       },
       {
         "day": 0,
-        "event": "Urgent OGD \u2014 3 columns of Grade 3 oesophageal varices, band ligation x4"
+        "event": "Urgent OGD — 3 columns of Grade 3 oesophageal varices, band ligation x4"
       },
       {
         "day": 1,
@@ -660,11 +660,11 @@
       "deteriorating",
       "dropout_risk"
     ],
-    "admission_conversion_probability": 98,
+    "admission_conversion_probability": 87,
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "stable"
   },
@@ -679,7 +679,7 @@
     "inferred_procedure_name": "COPD Exacerbation Management",
     "admission_type": "Emergency",
     "case_type": "Acute Respiratory",
-    "primary_diagnosis": "Acute Exacerbation of COPD \u2014 Severe",
+    "primary_diagnosis": "Acute Exacerbation of COPD — Severe",
     "icd10_code": "J44.1",
     "history": "68-year-old male, 40 pack-year smoker, with increasing breathlessness and productive cough for 5 days. SpO2 84% on room air, pCO2 58 on ABG. On home oxygen.",
     "comorbidities": [
@@ -695,8 +695,8 @@
     ],
     "red_flags": [
       "SpO2 84% on room air",
-      "pCO2 58 \u2014 hypercapnic respiratory failure",
-      "pH 7.30 \u2014 respiratory acidosis"
+      "pCO2 58 — hypercapnic respiratory failure",
+      "pH 7.30 — respiratory acidosis"
     ],
     "progression": "Bacterial exacerbation triggered by upper respiratory infection. Two previous hospital admissions this year.",
     "clinical_timeline": [
@@ -732,7 +732,7 @@
     "readmission_risk": "High",
     "dropout_risk": "Medium",
     "bed_type_required": "Respiratory HDU",
-    "ai_rationale": "Severe AECOPD with type 2 respiratory failure \u2014 BiPAP threshold criteria met. Recurrent admission pattern indicates inadequate outpatient control. Insurance enables full respiratory support pathway.",
+    "ai_rationale": "Severe AECOPD with type 2 respiratory failure — BiPAP threshold criteria met. Recurrent admission pattern indicates inadequate outpatient control. Insurance enables full respiratory support pathway.",
     "confidence_score": 87,
     "data_completeness": "High",
     "icd10_verified": true,
@@ -744,9 +744,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Respiratory HDU bed \u2014 Emergency admission",
+      "action": "Arrange Respiratory HDU bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "stable"
   },
@@ -758,10 +758,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Nephrology OPD",
-    "inferred_procedure_name": "Acute-on-Chronic Kidney Disease \u2014 Haemodialysis",
+    "inferred_procedure_name": "Acute-on-Chronic Kidney Disease — Haemodialysis",
     "admission_type": "Emergency",
     "case_type": "Renal Emergency",
-    "primary_diagnosis": "Acute-on-Chronic Kidney Disease \u2014 Hyperkalaemia",
+    "primary_diagnosis": "Acute-on-Chronic Kidney Disease — Hyperkalaemia",
     "icd10_code": "N18.4",
     "history": "58-year-old male with CKD Stage 4 (baseline creatinine 4.2) presenting with creatinine 7.8, potassium 6.8 mEq/L, oliguria for 3 days. Known diabetic nephropathy.",
     "comorbidities": [
@@ -777,8 +777,8 @@
       "Nausea"
     ],
     "red_flags": [
-      "Potassium 6.8 \u2014 severe hyperkalaemia, arrhythmia risk",
-      "Creatinine 7.8 \u2014 dialysis indication",
+      "Potassium 6.8 — severe hyperkalaemia, arrhythmia risk",
+      "Creatinine 7.8 — dialysis indication",
       "Pulmonary oedema on CXR"
     ],
     "progression": "Progressive worsening over 3 days after NSAID use for joint pain. Now with ECG changes (peaked T waves).",
@@ -834,7 +834,7 @@
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "worsening"
   },
@@ -846,12 +846,12 @@
     "visit_date": "2025-05-12",
     "customer_type": "Cash",
     "procedure_name": "Surgery Consultation",
-    "inferred_procedure_name": "Acute Appendicitis \u2014 Laparoscopic Appendicectomy",
+    "inferred_procedure_name": "Acute Appendicitis — Laparoscopic Appendicectomy",
     "admission_type": "Emergency",
     "case_type": "Acute Surgical Abdomen",
-    "primary_diagnosis": "Acute Appendicitis \u2014 Perforated",
+    "primary_diagnosis": "Acute Appendicitis — Perforated",
     "icd10_code": "K35.2",
-    "history": "24-year-old male with 36-hour history of central abdominal pain migrating to right iliac fossa, fever 38.8\u00b0C, vomiting. Guarding and rigidity on examination. Alvarado score 9.",
+    "history": "24-year-old male with 36-hour history of central abdominal pain migrating to right iliac fossa, fever 38.8°C, vomiting. Guarding and rigidity on examination. Alvarado score 9.",
     "comorbidities": [],
     "possible_symptoms": [
       "Right Iliac Fossa Pain",
@@ -860,8 +860,8 @@
       "Guarding and Rigidity"
     ],
     "red_flags": [
-      "Alvarado score 9 \u2014 high surgical risk",
-      "36-hour delay \u2014 perforation likely",
+      "Alvarado score 9 — high surgical risk",
+      "36-hour delay — perforation likely",
       "Peritoneal signs present"
     ],
     "progression": "Delayed presentation by 36 hours. CT abdomen confirms perforated appendicitis with peri-appendicular abscess.",
@@ -894,11 +894,11 @@
     "deferred_time": null,
     "risk_category": "High",
     "risk_score": 7,
-    "risk_reasoning": "Perforated appendicitis with peritonitis. Delay increases sepsis risk. Young otherwise healthy patient \u2014 good surgical candidate with expected full recovery.",
+    "risk_reasoning": "Perforated appendicitis with peritonitis. Delay increases sepsis risk. Young otherwise healthy patient — good surgical candidate with expected full recovery.",
     "readmission_risk": "Low",
     "dropout_risk": "Low",
     "bed_type_required": "Surgical Ward",
-    "ai_rationale": "Perforation confirmed on CT. Alvarado 9 mandates surgical intervention. Young healthy patient reduces anaesthetic risk. Cash patient \u2014 upfront payment likely.",
+    "ai_rationale": "Perforation confirmed on CT. Alvarado 9 mandates surgical intervention. Young healthy patient reduces anaesthetic risk. Cash patient — upfront payment likely.",
     "confidence_score": 91,
     "data_completeness": "High",
     "icd10_verified": true,
@@ -909,9 +909,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Surgical Ward bed \u2014 Emergency admission",
+      "action": "Arrange Surgical Ward bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "stable"
   },
@@ -926,7 +926,7 @@
     "inferred_procedure_name": "Lupus Flare with Nephritis",
     "admission_type": "Urgent",
     "case_type": "Autoimmune Flare",
-    "primary_diagnosis": "Systemic Lupus Erythematosus \u2014 Lupus Nephritis Class III",
+    "primary_diagnosis": "Systemic Lupus Erythematosus — Lupus Nephritis Class III",
     "icd10_code": "M32.14",
     "history": "34-year-old female with known SLE presenting with worsening facial rash, joint pains, proteinuria 3.5g/day, creatinine 1.8 (rising). On Hydroxychloroquine.",
     "comorbidities": [
@@ -942,14 +942,14 @@
     ],
     "red_flags": [
       "Nephrotic-range proteinuria 3.5g/day",
-      "Rising creatinine \u2014 renal flare",
-      "APS \u2014 thrombosis risk during flare"
+      "Rising creatinine — renal flare",
+      "APS — thrombosis risk during flare"
     ],
     "progression": "Progressive renal deterioration over 6 weeks. Anti-dsDNA titre elevated 4x baseline.",
     "clinical_timeline": [
       {
         "day": 0,
-        "event": "Admission, renal biopsy performed \u2014 Class III LN confirmed"
+        "event": "Admission, renal biopsy performed — Class III LN confirmed"
       },
       {
         "day": 1,
@@ -986,11 +986,11 @@
     "icd10_verification_note": null,
     "disease_cohort": "Cardiac",
     "priority_tags": [],
-    "admission_conversion_probability": 95,
+    "admission_conversion_probability": 93,
     "next_action": {
-      "action": "Schedule admission within 24\u201348 hours \u2014 Rheumatology / Nephrology Ward",
+      "action": "Schedule admission within 24–48 hours — Rheumatology / Nephrology Ward",
       "urgency": "medium",
-      "icon": "\ud83d\udccb"
+      "icon": "📋"
     },
     "risk_trend": "worsening"
   },
@@ -1002,12 +1002,12 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Oncology Consultation",
-    "inferred_procedure_name": "Febrile Neutropenia \u2014 Chemotherapy Complication",
+    "inferred_procedure_name": "Febrile Neutropenia — Chemotherapy Complication",
     "admission_type": "Emergency",
     "case_type": "Oncological Emergency",
-    "primary_diagnosis": "Febrile Neutropenia \u2014 Post Chemotherapy",
+    "primary_diagnosis": "Febrile Neutropenia — Post Chemotherapy",
     "icd10_code": "D70.1",
-    "history": "52-year-old male with Non-Hodgkin's Lymphoma on R-CHOP chemotherapy, Day 10 post-cycle 4, presenting with fever 39.2\u00b0C, ANC 0.2 x10^9/L.",
+    "history": "52-year-old male with Non-Hodgkin's Lymphoma on R-CHOP chemotherapy, Day 10 post-cycle 4, presenting with fever 39.2°C, ANC 0.2 x10^9/L.",
     "comorbidities": [
       "Non-Hodgkin's Lymphoma (Diffuse Large B-Cell)",
       "Chemotherapy-induced Immunosuppression"
@@ -1019,11 +1019,11 @@
       "No Focal Infection Source"
     ],
     "red_flags": [
-      "ANC 0.2 \u2014 profound neutropenia",
-      "MASCC score 15 \u2014 high-risk febrile neutropenia",
+      "ANC 0.2 — profound neutropenia",
+      "MASCC score 15 — high-risk febrile neutropenia",
       "Hemodynamically borderline"
     ],
-    "progression": "Day 10 post-R-CHOP chemotherapy \u2014 nadir period. Fever developed acutely. Blood cultures drawn.",
+    "progression": "Day 10 post-R-CHOP chemotherapy — nadir period. Fever developed acutely. Blood cultures drawn.",
     "clinical_timeline": [
       {
         "day": 0,
@@ -1031,7 +1031,7 @@
       },
       {
         "day": 1,
-        "event": "Blood cultures: E. coli bacteraemia \u2014 antibiotics tailored"
+        "event": "Blood cultures: E. coli bacteraemia — antibiotics tailored"
       },
       {
         "day": 3,
@@ -1070,7 +1070,7 @@
     "next_action": {
       "action": "Admit to ICU/CCU immediately",
       "urgency": "critical",
-      "icon": "\ud83d\udea8"
+      "icon": "🚨"
     },
     "risk_trend": "stable"
   },
@@ -1082,10 +1082,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Cash",
     "procedure_name": "Psychiatry OPD",
-    "inferred_procedure_name": "Acute Psychotic Episode \u2014 First Episode",
+    "inferred_procedure_name": "Acute Psychotic Episode — First Episode",
     "admission_type": "Urgent",
     "case_type": "Psychiatric Emergency",
-    "primary_diagnosis": "First Episode Psychosis \u2014 Possible Schizophrenia",
+    "primary_diagnosis": "First Episode Psychosis — Possible Schizophrenia",
     "icd10_code": "F29",
     "history": "22-year-old female, brought by family with 3-week history of auditory hallucinations, paranoid delusions, social withdrawal, stopped eating. No prior psychiatric history. No substance use.",
     "comorbidities": [],
@@ -1096,7 +1096,7 @@
       "Decreased Self-care"
     ],
     "red_flags": [
-      "Not eating for 5 days \u2014 nutritional compromise",
+      "Not eating for 5 days — nutritional compromise",
       "Agitation and unpredictable behaviour",
       "Risk of self-harm during psychotic episode"
     ],
@@ -1108,11 +1108,11 @@
       },
       {
         "day": 0,
-        "event": "CT brain, thyroid, metabolic screen \u2014 all normal"
+        "event": "CT brain, thyroid, metabolic screen — all normal"
       },
       {
         "day": 1,
-        "event": "Antipsychotic initiated \u2014 Risperidone 2mg, titrated slowly"
+        "event": "Antipsychotic initiated — Risperidone 2mg, titrated slowly"
       },
       {
         "day": 3,
@@ -1138,7 +1138,7 @@
     "readmission_risk": "Medium",
     "dropout_risk": "High",
     "bed_type_required": "Psychiatric Ward",
-    "ai_rationale": "First episode psychosis requiring inpatient initiation of antipsychotics. Nutritional risk adds medical complexity. Cash patient \u2014 family likely to be involved in care decisions.",
+    "ai_rationale": "First episode psychosis requiring inpatient initiation of antipsychotics. Nutritional risk adds medical complexity. Cash patient — family likely to be involved in care decisions.",
     "confidence_score": 82,
     "data_completeness": "Medium",
     "icd10_verified": false,
@@ -1147,11 +1147,11 @@
     "priority_tags": [
       "dropout_risk"
     ],
-    "admission_conversion_probability": 77,
+    "admission_conversion_probability": 53,
     "next_action": {
-      "action": "Schedule admission within 24\u201348 hours \u2014 Psychiatric Ward",
+      "action": "Schedule admission within 24–48 hours — Psychiatric Ward",
       "urgency": "medium",
-      "icon": "\ud83d\udccb"
+      "icon": "📋"
     },
     "risk_trend": "stable"
   },
@@ -1163,7 +1163,7 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Ophthalmology OPD",
-    "inferred_procedure_name": "Central Retinal Artery Occlusion \u2014 Time-Critical",
+    "inferred_procedure_name": "Central Retinal Artery Occlusion — Time-Critical",
     "admission_type": "Emergency",
     "case_type": "Ophthalmological Emergency",
     "primary_diagnosis": "Central Retinal Artery Occlusion Right Eye",
@@ -1180,8 +1180,8 @@
       "Afferent Pupillary Defect"
     ],
     "red_flags": [
-      "Symptom onset < 6 hours \u2014 intervention window",
-      "Possible central embolic event \u2014 stroke risk",
+      "Symptom onset < 6 hours — intervention window",
+      "Possible central embolic event — stroke risk",
       "AF without adequate anticoagulation"
     ],
     "progression": "Acute onset 2 hours ago. Vision 6/60 right eye. Possible embolic source from AF.",
@@ -1192,11 +1192,11 @@
       },
       {
         "day": 0,
-        "event": "Urgent neurology referral \u2014 TIA/stroke workup initiated"
+        "event": "Urgent neurology referral — TIA/stroke workup initiated"
       },
       {
         "day": 0,
-        "event": "MRI brain: small cortical infarct confirmed \u2014 embolic source"
+        "event": "MRI brain: small cortical infarct confirmed — embolic source"
       },
       {
         "day": 1,
@@ -1210,7 +1210,7 @@
     "expected_revenue": 78000,
     "estimated_los_days": 3,
     "best_treatment": "Emergency IOP reduction, inhalation of carbogen, ocular massage, anticoagulation for embolic source",
-    "secondary_treatment": "Stroke prevention \u2014 NOAC, hypertension control, statin, low vision rehab",
+    "secondary_treatment": "Stroke prevention — NOAC, hypertension control, statin, low vision rehab",
     "deferred_time": null,
     "risk_category": "High",
     "risk_score": 8,
@@ -1230,9 +1230,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Ophthalmology / Neurology Ward bed \u2014 Emergency admission",
+      "action": "Arrange Ophthalmology / Neurology Ward bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "stable"
   },
@@ -1244,10 +1244,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Cash",
     "procedure_name": "Dermatology OPD",
-    "inferred_procedure_name": "Pemphigus Vulgaris \u2014 Acute Flare",
+    "inferred_procedure_name": "Pemphigus Vulgaris — Acute Flare",
     "admission_type": "Urgent",
     "case_type": "Dermatological Emergency",
-    "primary_diagnosis": "Pemphigus Vulgaris \u2014 Extensive Flare",
+    "primary_diagnosis": "Pemphigus Vulgaris — Extensive Flare",
     "icd10_code": "L10.0",
     "history": "45-year-old female with known pemphigus vulgaris presenting with extensive blistering involving >30% BSA, painful oral mucosa lesions, difficulty swallowing. On low-dose prednisolone.",
     "comorbidities": [
@@ -1261,8 +1261,8 @@
       "Nikolsky Sign Positive"
     ],
     "red_flags": [
-      ">30% BSA involvement \u2014 fluid loss risk",
-      "Dysphagia \u2014 nutritional compromise",
+      ">30% BSA involvement — fluid loss risk",
+      "Dysphagia — nutritional compromise",
       "Secondary infection risk in open lesions"
     ],
     "progression": "Breakthrough flare despite maintenance prednisolone. Blisters spreading rapidly over 5 days.",
@@ -1273,7 +1273,7 @@
       },
       {
         "day": 1,
-        "event": "Rituximab infusion scheduled \u2014 steroid-sparing approach"
+        "event": "Rituximab infusion scheduled — steroid-sparing approach"
       },
       {
         "day": 2,
@@ -1303,7 +1303,7 @@
     "readmission_risk": "Medium",
     "dropout_risk": "Medium",
     "bed_type_required": "Dermatology Ward / Burns-type Care",
-    "ai_rationale": "Extensive PV flare requiring immunosuppression escalation with Rituximab. BSA >30% necessitates inpatient wound care and nutritional support. Cash patient \u2014 high out-of-pocket cost.",
+    "ai_rationale": "Extensive PV flare requiring immunosuppression escalation with Rituximab. BSA >30% necessitates inpatient wound care and nutritional support. Cash patient — high out-of-pocket cost.",
     "confidence_score": 84,
     "data_completeness": "Medium",
     "icd10_verified": false,
@@ -1312,11 +1312,11 @@
     "priority_tags": [
       "high_value"
     ],
-    "admission_conversion_probability": 87,
+    "admission_conversion_probability": 68,
     "next_action": {
-      "action": "Schedule admission within 24\u201348 hours \u2014 Dermatology Ward / Burns-type Care",
+      "action": "Schedule admission within 24–48 hours — Dermatology Ward / Burns-type Care",
       "urgency": "medium",
-      "icon": "\ud83d\udccb"
+      "icon": "📋"
     },
     "risk_trend": "worsening"
   },
@@ -1328,12 +1328,12 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "ENT Consultation",
-    "inferred_procedure_name": "Deep Neck Space Infection \u2014 Surgical Drainage",
+    "inferred_procedure_name": "Deep Neck Space Infection — Surgical Drainage",
     "admission_type": "Emergency",
     "case_type": "ENT Surgical Emergency",
     "primary_diagnosis": "Parapharyngeal Abscess",
     "icd10_code": "J39.0",
-    "history": "35-year-old male with 5-day history of worsening sore throat, trismus, high fever 40\u00b0C, drooling. Neck swelling right side. CT confirms parapharyngeal collection 3.5cm.",
+    "history": "35-year-old male with 5-day history of worsening sore throat, trismus, high fever 40°C, drooling. Neck swelling right side. CT confirms parapharyngeal collection 3.5cm.",
     "comorbidities": [
       "Type 2 Diabetes Mellitus"
     ],
@@ -1345,9 +1345,9 @@
       "Odynophagia"
     ],
     "red_flags": [
-      "Trismus \u2014 airway compromise risk",
+      "Trismus — airway compromise risk",
       "Descending mediastinitis risk",
-      "Diabetic \u2014 impaired healing, aggressive infection"
+      "Diabetic — impaired healing, aggressive infection"
     ],
     "progression": "Started as dental infection 10 days ago, now evolved to deep neck space abscess. Airway narrowing on CT.",
     "clinical_timeline": [
@@ -1383,7 +1383,7 @@
     "deferred_time": null,
     "risk_category": "High",
     "risk_score": 8,
-    "risk_reasoning": "Parapharyngeal abscess with trismus and airway narrowing \u2014 risk of complete airway obstruction and descending mediastinitis. Diabetes impairs immune response and healing.",
+    "risk_reasoning": "Parapharyngeal abscess with trismus and airway narrowing — risk of complete airway obstruction and descending mediastinitis. Diabetes impairs immune response and healing.",
     "readmission_risk": "Low",
     "dropout_risk": "Low",
     "bed_type_required": "ENT Ward / ICU Backup",
@@ -1399,9 +1399,9 @@
     ],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange ENT Ward / ICU Backup bed \u2014 Emergency admission",
+      "action": "Arrange ENT Ward / ICU Backup bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "stable"
   },
@@ -1413,12 +1413,12 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Haematology Consultation",
-    "inferred_procedure_name": "Sickle Cell Crisis \u2014 Vaso-occlusive",
+    "inferred_procedure_name": "Sickle Cell Crisis — Vaso-occlusive",
     "admission_type": "Emergency",
     "case_type": "Haematological Emergency",
-    "primary_diagnosis": "Sickle Cell Disease \u2014 Acute Vaso-occlusive Crisis",
+    "primary_diagnosis": "Sickle Cell Disease — Acute Vaso-occlusive Crisis",
     "icd10_code": "D57.00",
-    "history": "29-year-old female with known sickle cell disease presenting with severe bilateral leg pain, pain score 9/10, fever 38.5\u00b0C. Haemoglobin 6.8 g/dL. 4th crisis this year.",
+    "history": "29-year-old female with known sickle cell disease presenting with severe bilateral leg pain, pain score 9/10, fever 38.5°C. Haemoglobin 6.8 g/dL. 4th crisis this year.",
     "comorbidities": [
       "Sickle Cell Disease (HbSS)",
       "Avascular Necrosis of Hip",
@@ -1431,9 +1431,9 @@
       "Pallor"
     ],
     "red_flags": [
-      "Haemoglobin 6.8 \u2014 may need transfusion",
-      "4th crisis this year \u2014 poorly controlled",
-      "Pulmonary hypertension \u2014 ACS risk"
+      "Haemoglobin 6.8 — may need transfusion",
+      "4th crisis this year — poorly controlled",
+      "Pulmonary hypertension — ACS risk"
     ],
     "progression": "Triggered by dehydration and cold exposure. Escalating pain despite oral analgesia at home.",
     "clinical_timeline": [
@@ -1443,11 +1443,11 @@
       },
       {
         "day": 1,
-        "event": "Blood transfusion: 2 units PRBC \u2014 Hb improved to 8.5"
+        "event": "Blood transfusion: 2 units PRBC — Hb improved to 8.5"
       },
       {
         "day": 2,
-        "event": "Chest X-ray clear \u2014 ACS ruled out"
+        "event": "Chest X-ray clear — ACS ruled out"
       },
       {
         "day": 3,
@@ -1478,9 +1478,9 @@
     "priority_tags": [],
     "admission_conversion_probability": 98,
     "next_action": {
-      "action": "Arrange Haematology Ward bed \u2014 Emergency admission",
+      "action": "Arrange Haematology Ward bed — Emergency admission",
       "urgency": "high",
-      "icon": "\u26a1"
+      "icon": "⚡"
     },
     "risk_trend": "worsening"
   },
@@ -1495,7 +1495,7 @@
     "inferred_procedure_name": "Scrub Typhus with Multi-organ Involvement",
     "admission_type": "Emergency",
     "case_type": "Tropical Infection",
-    "primary_diagnosis": "Scrub Typhus \u2014 Complicated",
+    "primary_diagnosis": "Scrub Typhus — Complicated",
     "icd10_code": "A75.3",
     "history": "32-year-old male, agricultural worker, presenting with 8-day fever, headache, eschar on right axilla, hepatosplenomegaly, platelet 45,000. Weil-Felix positive.",
     "comorbidities": [],
@@ -1507,11 +1507,11 @@
       "Thrombocytopenia"
     ],
     "red_flags": [
-      "Platelet 45,000 \u2014 bleeding risk",
+      "Platelet 45,000 — bleeding risk",
       "Eschar with lymphadenopathy confirmed rickettsial",
-      "LFT elevated 3x \u2014 hepatitis"
+      "LFT elevated 3x — hepatitis"
     ],
-    "progression": "8 days of fever without diagnosis in rural setting. Eschar identified on examination \u2014 classic scrub typhus sign.",
+    "progression": "8 days of fever without diagnosis in rural setting. Eschar identified on examination — classic scrub typhus sign.",
     "clinical_timeline": [
       {
         "day": 0,
@@ -1519,7 +1519,7 @@
       },
       {
         "day": 1,
-        "event": "Fever reducing, Weil-Felix titre 1:80 \u2014 diagnosis confirmed"
+        "event": "Fever reducing, Weil-Felix titre 1:80 — diagnosis confirmed"
       },
       {
         "day": 3,
@@ -1541,22 +1541,22 @@
     "deferred_time": null,
     "risk_category": "Medium",
     "risk_score": 6,
-    "risk_reasoning": "Complicated scrub typhus with multi-organ involvement (liver, spleen, platelets) but no CNS involvement yet. Treatable with early Doxycycline \u2014 risk of encephalitis if delayed.",
+    "risk_reasoning": "Complicated scrub typhus with multi-organ involvement (liver, spleen, platelets) but no CNS involvement yet. Treatable with early Doxycycline — risk of encephalitis if delayed.",
     "readmission_risk": "Low",
     "dropout_risk": "Medium",
     "bed_type_required": "General Ward",
-    "ai_rationale": "Classic scrub typhus with eschar and thrombocytopenia. Highly responsive to Doxycycline. Cash patient from agricultural background \u2014 cost-conscious, ensure affordable discharge regimen.",
+    "ai_rationale": "Classic scrub typhus with eschar and thrombocytopenia. Highly responsive to Doxycycline. Cash patient from agricultural background — cost-conscious, ensure affordable discharge regimen.",
     "confidence_score": 85,
     "data_completeness": "Medium",
     "icd10_verified": false,
     "icd10_verification_note": "Requires medical coder review before billing",
     "disease_cohort": "Infectious Disease",
     "priority_tags": [],
-    "admission_conversion_probability": 98,
+    "admission_conversion_probability": 81,
     "next_action": {
       "action": "Schedule follow-up appointment and monitor progress",
       "urgency": "low",
-      "icon": "\ud83d\udcc5"
+      "icon": "📅"
     },
     "risk_trend": "stable"
   },
@@ -1568,10 +1568,10 @@
     "visit_date": "2025-05-12",
     "customer_type": "Insurance",
     "procedure_name": "Geriatrics OPD",
-    "inferred_procedure_name": "Polypharmacy Review \u2014 High Fall Risk",
+    "inferred_procedure_name": "Polypharmacy Review — High Fall Risk",
     "admission_type": "Elective",
     "case_type": "Geriatric Assessment",
-    "primary_diagnosis": "Polypharmacy-induced Falls \u2014 Recurrent Syncope",
+    "primary_diagnosis": "Polypharmacy-induced Falls — Recurrent Syncope",
     "icd10_code": "R55",
     "history": "78-year-old female with 3 falls in last 2 months, on 11 medications including 3 antihypertensives, 2 psychotropics. Postural hypotension documented. Frailty score 4/7.",
     "comorbidities": [
@@ -1588,8 +1588,8 @@
       "Confusion"
     ],
     "red_flags": [
-      "3 falls in 2 months \u2014 high fracture risk",
-      "Frailty score 4 \u2014 moderate frailty",
+      "3 falls in 2 months — high fracture risk",
+      "Frailty score 4 — moderate frailty",
       "Polypharmacy with anticholinergic burden"
     ],
     "progression": "Increasing fall frequency. Last fall caused bruising. Medication complexity preventing adequate BP control and contributing to postural hypotension.",
@@ -1600,7 +1600,7 @@
       },
       {
         "day": 1,
-        "event": "Medication review \u2014 deprescribed 4 medications including 1 psychotropic"
+        "event": "Medication review — deprescribed 4 medications including 1 psychotropic"
       },
       {
         "day": 2,
@@ -1631,11 +1631,11 @@
     "priority_tags": [
       "conversion_opportunity"
     ],
-    "admission_conversion_probability": 72,
+    "admission_conversion_probability": 74,
     "next_action": {
-      "action": "Follow up for elective admission \u2014 surgical conversion opportunity",
+      "action": "Follow up for elective admission — surgical conversion opportunity",
       "urgency": "low",
-      "icon": "\ud83d\udcbc"
+      "icon": "💼"
     },
     "risk_trend": "stable"
   }

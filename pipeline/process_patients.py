@@ -51,6 +51,7 @@ def call_claude(client, patient: dict) -> dict:
                 text = text[4:]
         result = json.loads(text)
         result["patient_id"] = str(patient.get("Patient_ID", result.get("patient_id", "")))
+        result["admission_conversion_probability"] = compute_admission_conversion_probability(result)
         return result
     except Exception as e:
         print(f"  Error for {patient.get('Patient_ID')}: {e}")
@@ -77,6 +78,49 @@ def call_claude(client, patient: dict) -> dict:
             "confidence_score": 0,
             "data_completeness": "Low",
         }
+
+def compute_admission_conversion_probability(patient: dict) -> int:
+    """
+    Deterministic rule-based proxy derived entirely from Claude-inferred fields.
+    Higher score = more likely this patient will be admitted.
+
+    Factors:
+      admission_type  : Emergency +30, Urgent +15, Elective +0
+      dropout_risk    : High -25, Medium -10, Low +5
+      customer_type   : Insurance +10, Cash +0
+      risk_score      : (score - 5) * 2  (range -8 to +10 for scores 1-10)
+      readmission_risk: High +5 (already in system, likely needs admission)
+      red_flags count : +3 per flag, capped at +12
+    """
+    base = 50
+    admission_type = patient.get("admission_type", "Elective")
+    if admission_type == "Emergency":
+        base += 30
+    elif admission_type == "Urgent":
+        base += 15
+
+    dropout_risk = patient.get("dropout_risk", "Medium")
+    if dropout_risk == "High":
+        base -= 25
+    elif dropout_risk == "Medium":
+        base -= 10
+    elif dropout_risk == "Low":
+        base += 5
+
+    if str(patient.get("customer_type", "")).lower() == "insurance":
+        base += 10
+
+    risk_score = int(patient.get("risk_score", 5) or 5)
+    base += (risk_score - 5) * 2
+
+    if patient.get("readmission_risk") == "High":
+        base += 5
+
+    red_flag_bonus = min(len(patient.get("red_flags", [])) * 3, 12)
+    base += red_flag_bonus
+
+    return max(10, min(98, base))
+
 
 def main():
     if not ANTHROPIC_API_KEY:
